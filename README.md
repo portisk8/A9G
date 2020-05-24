@@ -5,30 +5,30 @@ Esta es una librería común que usa comandos AT para hacer cualquier cosa. por 
 
 ## Actions/Acciones 🚀
 
-_1-IsOk
-2-Call to...
-3-Send SMS to...
-4-AnswerPhone
-5-Ring off
-6-Connect to broker MQTT
-7-Publish message in a topic
-8-Suscribe to a topic
-9-Disconnect to MQTT 
-10-Turn On GPS **TODO**
-11-Get Location **TODO**
+_1-IsOk<br/>
+2-Call to...<br/>
+3-Send SMS to...<br/>
+4-AnswerPhone<br/>
+5-Ring off<br/>
+6-Connect to broker MQTT<br/>
+7-Publish message in a topic<br/>
+8-Suscribe to a topic<br/>
+9-Disconnect to MQTT <br/>
+10-Turn On GPS **TODO**<br/>
+11-Get Location **TODO**<br/>
 12-Turn Off GPS **TODO**_
 
-_1-IsOk
-2-Llamar a...
-3-Enviar mensaje a ...
-4-Contestar
-5-Colgar
-6-Conectar a broker MQTT
-7-Publicar mensaje a topico
-8-Suscribirse a topico
-9-Desconectar MQTT 
-10-Conectar GPS **TODO**
-11-Obtener Ubicacion **TODO**
+_1-IsOk<br/>
+2-Llamar a...<br/>
+3-Enviar mensaje a ...<br/>
+4-Contestar<br/>
+5-Colgar<br/>
+6-Conectar a broker MQTT<br/>
+7-Publicar mensaje a topico<br/>
+8-Suscribirse a topico<br/>
+9-Desconectar MQTT <br/>
+10-Conectar GPS **TODO**<br/>
+11-Obtener Ubicacion **TODO**<br/>
 12-Apagar GPS **TODO**_
 
 ## Autor ✒️
