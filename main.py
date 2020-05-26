@@ -15,6 +15,9 @@ while True:
 7-Publicar mensaje a topico
 8-Suscribirse a topico
 9-Desconectar MQTT 
+10-Conectar GPS
+11-Apagar el GPS
+12-Obtener Posicion
 """)
 	x = input("\nIngrese opcion: ")
 	if(x=="1"):
@@ -45,3 +48,11 @@ while True:
 		a9g.mqttSuscribe(topic=topic)
 	if(x=="9"):
 		a9g.mqttDisconnect()
+	if(x=="10"):
+		a9g.gpsConnect(activarRastreo=True)
+	if(x=="11"):
+		a9g.gpsDisconnect()
+	if(x=="12"):
+		lat, lng = a9g.gpsGetLocation()
+		print("Lat > ",lat)
+		print("Lng > ",lng)

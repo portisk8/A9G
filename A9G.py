@@ -2,7 +2,12 @@ import serial
 import threading
 import time
 import re
+import pynmea2
+from random import getrandbits
+from  builtins import any as b_any
 
+debug=False
+wordsToPrint = ['CALL','SOUNDER','RING']
 class A9G(object):
 	""" """
 
@@ -29,7 +34,7 @@ class A9G(object):
 				c = self.comPort.readline()
 				if(self.recuperarMensaje != None and self.recuperarMensaje in c.decode()): #En el caso de que se precise recuperar un mensaje
 					self.mensajeRecuperado=c.decode()
-				print(c.decode())
+				if(debug): print(c.decode())
 			else:
 				time.sleep(0.1)
 
@@ -64,7 +69,6 @@ class A9G(object):
 			phoneNumber -- numero de telefono ej: +549XXXXXXXXXX
 			text		-- texto que desea enviar
 		"""
-		self.recuperarMensaje=">"
 		firstCommand = "AT+CMGF=1"
 		self.__sendCommand(firstCommand)
 		secondCommand = "AT+CMGS=\"{}\"".format(phoneNumber)
@@ -136,4 +140,45 @@ class A9G(object):
 		command="AT+MQTTDISCONN"
 		self.__sendCommand(command)
 		
+	def gpsConnect(self,activarRastreo=False):
+		'Encender el GPS.'
+		command="AT+GPS=1"
+		self.__sendCommand(command)
+		if(activarRastreo):
+			command="AT+GPSRD=1"
+			self.__sendCommand(command)
 
+	def gpsDisconnect(self,activarRastreo=False):
+		'Apagar el GPS.'
+		command="AT+GPS=0"
+		self.__sendCommand(command)
+		command="AT+GPSRD=0"
+		self.__sendCommand(command)
+
+	def gpsGetLocation(self):
+		'Obtener Localización actual del GPS.'
+		self.mensajeRecuperado = None
+		self.recuperarMensaje="GNGGA"
+		while self.recuperarMensaje != None:
+			try:
+				while (self.mensajeRecuperado == None):
+					pass
+				msgClean = self.mensajeRecuperado[7::] if "GNGGA" in self.mensajeRecuperado else self.mensajeRecuperado
+				latlon = self.__getLocationFromMessage(msgClean)
+				self.mensajeRecuperado = None
+				self.recuperarMensaje = None
+			except:
+				self.recuperarMensaje = "GNGGA" if bool(getrandbits(1)) else "GNRMC"
+				pass
+		return latlon
+
+	def convertToDecimalDegrees(self, value, multiplier):
+		DD = float(value)/100
+		return DD * multiplier
+
+	def __getLocationFromMessage(self, msg):
+		latLng = pynmea2.parse(msg)
+		return latLng.latitude, latLng.longitude
+
+	
+		
