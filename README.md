@@ -1,4 +1,5 @@
 # A9G
+
 This is a common library who use AT commands to do anything. eg: call, send SMS message, connect to MQTT broker, and use GPS..
 
 Esta es una librería común que usa comandos AT para hacer cualquier cosa. por ejemplo: llamar, enviar mensajes SMS, conectarse al broker MQTT y usar el GPS.
@@ -14,9 +15,9 @@ _1-IsOk<br/>
 7-Publish message in a topic<br/>
 8-Suscribe to a topic<br/>
 9-Disconnect to MQTT <br/>
-10-Turn On GPS **TODO**<br/>
-11-Get Location **TODO**<br/>
-12-Turn Off GPS **TODO**_
+10-Turn On GPS <br/>
+11-Get Location <br/>
+12-Turn Off GPS _
 
 _1-IsOk<br/>
 2-Llamar a...<br/>
@@ -27,10 +28,10 @@ _1-IsOk<br/>
 7-Publicar mensaje a topico<br/>
 8-Suscribirse a topico<br/>
 9-Desconectar MQTT <br/>
-10-Conectar GPS **TODO**<br/>
-11-Obtener Ubicacion **TODO**<br/>
-12-Apagar GPS **TODO**_
+10-Conectar GPS <br/>
+11-Obtener Ubicacion <br/>
+12-Apagar GPS _
 
 ## Autor ✒️
 
-* **Augusto Portillo** - *Trabajo Inicial* - [portisk8](https://github.com/portisk8)
+- **Augusto Portillo** - _Trabajo Inicial_ - [portisk8](https://github.com/portisk8)
