@@ -34,7 +34,7 @@ class A9G(object):
 				c = self.comPort.readline()
 				if(self.recuperarMensaje != None and self.recuperarMensaje in c.decode()): #En el caso de que se precise recuperar un mensaje
 					self.mensajeRecuperado=c.decode()
-				if(debug): print(c.decode())
+				if(b_any( x in c.decode() for x in wordsToPrint)): print(c.decode())
 			else:
 				time.sleep(0.1)
 
