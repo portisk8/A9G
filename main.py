@@ -54,5 +54,6 @@ while True:
 		a9g.gpsDisconnect()
 	if(x=="12"):
 		lat, lng = a9g.gpsGetLocation()
+		print("http://maps.google.com/maps?q={},{}&z=17".format(lat,lng))
 		print("Lat > ",lat)
 		print("Lng > ",lng)
