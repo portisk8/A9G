@@ -1,7 +1,7 @@
 from A9G import A9G
 import time
 
-a9g = A9G("COM9")
+a9g = A9G("COM4")
 
 while True:
 	time.sleep(1)
@@ -37,7 +37,7 @@ while True:
 		host = input("\nIngrese Host: ")
 		port = input("\nIngrese Puerto: ")
 		user = input("\nIngrese Usuario: ")
-		password = input("\nIngrese Usuario: ")
+		password = input("\nIngrese Password: ")
 		a9g.mqttConnect(host=host,port=port,user=user,password=password)
 	if(x=="7"):
 		topic = input("\nIngrese Topico: ")
@@ -49,7 +49,7 @@ while True:
 	if(x=="9"):
 		a9g.mqttDisconnect()
 	if(x=="10"):
-		a9g.gpsConnect(activarRastreo=True)
+		a9g.gpsConnectAGPS(activarRastreo=True)
 	if(x=="11"):
 		a9g.gpsDisconnect()
 	if(x=="12"):

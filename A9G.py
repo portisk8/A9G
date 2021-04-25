@@ -7,7 +7,7 @@ from random import getrandbits
 from  builtins import any as b_any
 
 debug=False
-wordsToPrint = ['CALL','SOUNDER','RING']
+wordsToPrint = ['CALL','SOUNDER','RING', 'OK', 'CME ERROR', 'MQTTDISCONNECTED', 'MQTTPUBLISH']
 class A9G(object):
 	""" """
 
@@ -34,7 +34,13 @@ class A9G(object):
 				c = self.comPort.readline()
 				if(self.recuperarMensaje != None and self.recuperarMensaje in c.decode()): #En el caso de que se precise recuperar un mensaje
 					self.mensajeRecuperado=c.decode()
-				if(b_any( x in c.decode() for x in wordsToPrint)): print(c.decode())
+				if(b_any( x in c.decode() for x in wordsToPrint)): 
+					if(wordsToPrint[6] in c.decode()):
+						msg = c.decode().split(",")
+						print("\n Mensaje desde Topic: "+msg[1] + "\n	> "+msg[3])
+					else:
+						print(c.decode())
+				if (debug): print("Debugger > " + c.decode())
 			else:
 				time.sleep(0.1)
 
@@ -145,6 +151,24 @@ class A9G(object):
 		command="AT+GPS=1"
 		self.__sendCommand(command)
 		if(activarRastreo):
+			command="AT+GPSRD=1"
+			self.__sendCommand(command)
+
+	def gpsConnectAGPS(self,activarRastreo=False):
+		'Encender el AGPS.'
+		print("Encendiendo AGPS...")
+		command="AT+CGATT=1"
+		self.__sendCommand(command)
+		command="AT+CGDCONT=1,\"IP\",\"CMNET\""
+		self.__sendCommand(command)
+		command="AT+CGACT=1,1"
+		self.__sendCommand(command)
+		command="AT+GPS=0"
+		self.__sendCommand(command)
+		command="AT+AGPS=1"
+		self.__sendCommand(command)
+		if(activarRastreo):
+			print("Activando rastreo AGPS...")
 			command="AT+GPSRD=1"
 			self.__sendCommand(command)
 
